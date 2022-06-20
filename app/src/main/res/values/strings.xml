@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">CryptocurrencyApp</string>
+    <string name="detail_screen_toolbar_title">Detail Screen</string>
+    <string name="back">Voltar</string>
+</resources>
