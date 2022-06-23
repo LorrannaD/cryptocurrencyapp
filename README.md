@@ -15,5 +15,5 @@ Cryptocurrency app
 
 • Kotlin
 
-• Compose
+• Jetpack Compose
 
