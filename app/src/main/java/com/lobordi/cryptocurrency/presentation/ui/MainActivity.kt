@@ -6,7 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.navigation.compose.rememberNavController
-import com.lobordi.cryptocurrency.navigation.Navigation
+import com.lobordi.cryptocurrency.navigation.NavigationScreens
 import com.lobordi.cryptocurrency.presentation.ui.theme.CryptocurrencyAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -19,7 +19,7 @@ class MainActivity : ComponentActivity() {
             CryptocurrencyAppTheme {
                 Surface(color = MaterialTheme.colors.background) {
                     val navController = rememberNavController()
-                    Navigation(navController)
+                    NavigationScreens(navController)
                 }
             }
         }

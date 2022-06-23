@@ -13,7 +13,7 @@ sealed class Screen(val route : String){
 }
 
 @Composable
-fun Navigation(navController: NavHostController) {
+fun NavigationScreens(navController: NavHostController) {
     NavHost(
         navController = navController,
         startDestination = Screen.CoinListScreen.route
@@ -26,7 +26,7 @@ fun Navigation(navController: NavHostController) {
         composable(
             route = Screen.CoinDetailScreen.route + "/{coinId}"
         ) {
-            CoinDetailScreen()
+            CoinDetailScreen(navController = navController)
         }
     }
 }

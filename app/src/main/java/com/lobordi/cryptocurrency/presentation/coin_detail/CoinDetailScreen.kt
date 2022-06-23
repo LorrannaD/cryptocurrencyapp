@@ -4,36 +4,33 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.google.accompanist.flowlayout.FlowRow
-import com.lobordi.cryptocurrency.common.components.BackPressHandler
-import com.lobordi.cryptocurrency.common.components.DetailTopAppBar
-import com.lobordi.cryptocurrency.common.components.displayToast
+import com.lobordi.cryptocurrency.R
+import com.lobordi.cryptocurrency.navigation.Screen
 import com.lobordi.cryptocurrency.presentation.coin_detail.components.CoinTag
 import com.lobordi.cryptocurrency.presentation.coin_detail.components.TeamListItem
 
-@Preview("Coin Detail")
 @Composable
 fun CoinDetailScreen(
-    viewModel: CoinDetailViewModel = hiltViewModel()
+    viewModel: CoinDetailViewModel = hiltViewModel(),
+    navController: NavController
 ) {
     val state = viewModel.state.value
-    val context = LocalContext.current
-    val onBack = { displayToast(context) }
-
-    BackPressHandler(onBackPressed = onBack)
     Scaffold(
-        topBar = { DetailTopAppBar(onBack) }
+        topBar = { DetailTopAppBar(navController) }
     ) {
         Box(modifier = Modifier.fillMaxSize()) {
             state.coin?.let { coin ->
@@ -47,7 +44,7 @@ fun CoinDetailScreen(
                             horizontalArrangement = Arrangement.SpaceBetween
                         ) {
                             Text(
-                                text = "${coin.rank}. ${coin.name} (${coin.symbol}",
+                                text = "${coin.rank}. ${coin.name} (${coin.symbol})",
                                 style = MaterialTheme.typography.h2,
                                 modifier = Modifier.weight(8f)
                             )
@@ -115,5 +112,21 @@ fun CoinDetailScreen(
     }
 }
 
+@Composable
+fun DetailTopAppBar(navController: NavController) {
+    TopAppBar(
+        title = { Text(text = stringResource(id = R.string.detail_screen_toolbar_title)) },
+        navigationIcon = {
+            IconButton(onClick = { backPress(navController) }) {
+                Icon(
+                    imageVector = Icons.Filled.ArrowBack,
+                    contentDescription = stringResource(id = R.string.back),
+                )
+            }
+        }
+    )
+}
 
-
+fun backPress(navController: NavController) {
+    navController.popBackStack(route = Screen.CoinListScreen.route, inclusive = false)
+}
