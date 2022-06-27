@@ -10,14 +10,16 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.lobordi.cryptocurrency.R
-import com.lobordi.cryptocurrency.navigation.Screen
 import com.lobordi.cryptocurrency.presentation.coin_list.components.CoinListItem
+import com.lobordi.cryptocurrency.presentation.ui.navigation.Screen
 
 @Composable
 fun CoinListScreen(
@@ -44,6 +46,7 @@ fun CoinListScreen(
                     color = MaterialTheme.colors.error,
                     textAlign = TextAlign.Center,
                     modifier = Modifier
+                        .semantics(mergeDescendants = true) {}
                         .fillMaxWidth()
                         .padding(horizontal = 20.dp)
                         .align(Alignment.Center)
@@ -58,6 +61,11 @@ fun CoinListScreen(
 @Composable
 fun PatternTopAppBar() {
     TopAppBar(
-        title = { Text(text = stringResource(id = R.string.pattern_screen_toolbar_title)) },
+        title = {
+            Text(
+                text = stringResource(id = R.string.listcoins_screen_toolbar_title),
+                color = Color.White
+            )
+        }
     )
 }

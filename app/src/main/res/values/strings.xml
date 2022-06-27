@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">CryptocurrencyApp</string>
-    <string name="detail_screen_toolbar_title">Detail Screen</string>
-    <string name="pattern_screen_toolbar_title">CryptoCurrencys</string>
-    <string name="back">Voltar</string>
+    <string name="detail_screen_toolbar_title">Currency Details</string>
+    <string name="listcoins_screen_toolbar_title">List of Cryptocurrencies</string>
+    <string name="back">Back</string>
 </resources>

@@ -12,6 +12,7 @@ import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -19,14 +20,14 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.google.accompanist.flowlayout.FlowRow
 import com.lobordi.cryptocurrency.R
-import com.lobordi.cryptocurrency.navigation.Screen
 import com.lobordi.cryptocurrency.presentation.coin_detail.components.CoinTag
 import com.lobordi.cryptocurrency.presentation.coin_detail.components.TeamListItem
+import com.lobordi.cryptocurrency.presentation.ui.navigation.Screen
 
 @Composable
 fun CoinDetailScreen(
+    navController: NavController,
     viewModel: CoinDetailViewModel = hiltViewModel(),
-    navController: NavController
 ) {
     val state = viewModel.state.value
     Scaffold(
@@ -40,7 +41,9 @@ fun CoinDetailScreen(
                 ) {
                     item {
                         Row(
-                            modifier = Modifier.fillMaxWidth(),
+                            modifier = Modifier
+                                .semantics(mergeDescendants = true) {}
+                                .fillMaxWidth(),
                             horizontalArrangement = Arrangement.SpaceBetween
                         ) {
                             Text(
@@ -115,15 +118,22 @@ fun CoinDetailScreen(
 @Composable
 fun DetailTopAppBar(navController: NavController) {
     TopAppBar(
-        title = { Text(text = stringResource(id = R.string.detail_screen_toolbar_title)) },
+        title = {
+            Text(
+                text = stringResource(id = R.string.detail_screen_toolbar_title),
+                color = Color.White
+            )
+        },
         navigationIcon = {
             IconButton(onClick = { backPress(navController) }) {
                 Icon(
                     imageVector = Icons.Filled.ArrowBack,
                     contentDescription = stringResource(id = R.string.back),
+                    tint = Color.White
                 )
             }
         }
+
     )
 }
 
