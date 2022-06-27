@@ -9,8 +9,6 @@ Cryptocurrency app
 
 • Retrofit
 
-• Koin
-
 • Dagger
 
 • Kotlin
