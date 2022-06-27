@@ -1,4 +1,4 @@
-# cryptocurrencyapp
+# Cryptocurrency App
 Cryptocurrency app
 
 ● In this project I used the following technology:
@@ -8,8 +8,6 @@ Cryptocurrency app
 • Clean Architecture
 
 • Retrofit
-
-• Koin
 
 • Dagger
 
